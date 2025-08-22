@@ -61,9 +61,10 @@ class block_category_courses extends block_base
             return $this->content;
         }
 
-        $renderer = $PAGE->get_renderer('core');
-        $outputdata = (new \block_category_courses\output\main($USER->id, $this->config))->export_for_template($renderer);
-        $this->content->text = $renderer->render_from_template('block_category_courses/main', $outputdata);
+        $renderer = $PAGE->get_renderer('block_myoverview');
+        $outputdata = (new \block_category_courses\output\main($USER->id, $this->config))
+            ->export_for_template($renderer);
+        $this->content->text = $renderer->render_from_template('block_myoverview/main', $outputdata);
 
         return $this->content;
     }
