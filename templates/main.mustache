@@ -1,0 +1,53 @@
+<div class="category-cards-container">
+  {{#categories}}
+    <div class="category-card" role="button" tabindex="0" aria-label="{{#str}}viewcategory, block_category_courses{{/str}}: {{name}}" data-category-id="{{id}}" data-click-behavior="{{clickbehavior}}" style="background: {{color}}; color: {{textcolor}};">
+      <div class="card-image">
+        {{#image.type}}
+          {{#image.text}}
+            <div class="image-initials" aria-hidden="true">{{image.text}}</div>
+          {{/image.text}}
+        {{/image.type}}
+        {{^image.type}}
+          <img src="{{image}}" alt="{{name}}" class="category-image" />
+        {{/image.type}}
+      </div>
+
+      <div class="card-content">
+        <h3 class="category-title">{{name}}</h3>
+
+        {{#config.showdescription}}
+          {{#description}}
+            <p class="category-description">{{description}}</p>
+          {{/description}}
+        {{/config.showdescription}}
+
+        {{#config.showcoursecount}}
+          <div class="course-count-chip">
+            <span class="sr-only">{{completed_courses}} de {{total_courses}} cursos completados</span>
+            <span aria-hidden="true">{{completed_courses}} / {{total_courses}}</span>
+          </div>
+        {{/config.showcoursecount}}
+
+        {{#config.showprogress}}
+          <div class="progress-container">
+            <div class="progress-text">
+              <span class="progress-percentage">{{progress_percentage}}%</span>
+              <span class="sr-only">{{#str}}completed, block_category_courses{{/str}}</span>
+            </div>
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{progress_percentage}}" aria-valuemin="0" aria-valuemax="100" aria-label="{{progress_percentage}}% {{#str}}completed, block_category_courses{{/str}}">
+              <div class="progress-fill" style="width: {{progress_percentage}}%"></div>
+            </div>
+          </div>
+        {{/config.showprogress}}
+      </div>
+
+      <span class="card-link" data-url="{{url}}" aria-hidden="true"></span>
+    </div>
+  {{/categories}}
+
+  {{^categories}}
+    <div class="no-categories">
+      <p>{{#str}}nocategories, block_category_courses{{/str}}</p>
+    </div>
+  {{/categories}}
+</div>
